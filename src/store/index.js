@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import axiosInstance from "../api/axiosInstance";
 import lsKeys from "@/lib/localstorageKeys";
 import roles from "@/lib/roles";
-import router from "@/router";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -36,14 +35,9 @@ export default new Vuex.Store({
         password,
         username,
       });
+      //localstorage is not secure, jwt should store in httpOnly cookie
       localStorage.setItem(lsKeys.AUTH_TOKEN, data.token);
       commit("SET_IS_LOGIN", true);
-      await router.push({
-        name: "Home",
-        params: {
-          username: data.username,
-        },
-      });
     },
 
     async getProfileData({ commit }, username) {
@@ -64,9 +58,6 @@ export default new Vuex.Store({
       localStorage.removeItem(lsKeys.AUTH_TOKEN);
       commit("SET_IS_LOGIN", false);
       commit("SET_IS_MANAGER", false);
-      await router.push({
-        name: "Auth",
-      });
     },
   },
   modules: {},

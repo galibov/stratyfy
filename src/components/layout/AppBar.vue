@@ -27,7 +27,7 @@
       <v-icon>mdi-account-group</v-icon>
     </v-btn>
 
-    <v-btn @click="logOut" text v-if="isLogin">
+    <v-btn @click="LogOutUser" text v-if="isLogin">
       <span class="mr-2">Log out</span>
       <v-icon>mdi-logout</v-icon>
     </v-btn>
@@ -45,6 +45,13 @@ export default {
 
   methods: {
     ...mapActions(["logOut"]),
+
+    async LogOutUser() {
+      await this.logOut();
+      await this.$router.push({
+        name: "Auth",
+      });
+    },
   },
 };
 </script>

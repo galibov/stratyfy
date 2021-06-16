@@ -26,9 +26,6 @@
 import { mapState } from "vuex";
 export default {
   name: "Profile",
-
-  data: () => ({}),
-
   computed: {
     ...mapState(["profileData"]),
   },

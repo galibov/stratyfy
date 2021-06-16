@@ -41,21 +41,30 @@
 import { mapActions } from "vuex";
 export default {
   name: "Login",
-  data: () => ({
-    username: undefined,
-    password: undefined,
-    showPassword: false,
-    userNameRules: [(v) => !!v || "Username is required"],
-    passwordRules: [(v) => !!v || "Password is required"],
-  }),
+  data() {
+    return {
+      username: undefined,
+      password: undefined,
+      showPassword: false,
+      userNameRules: [(v) => !!v || "Username is required"],
+      passwordRules: [(v) => !!v || "Password is required"],
+    };
+  },
 
   methods: {
     ...mapActions(["loginUser"]),
-    authUser() {
+    async authUser() {
       if (this.$refs.form.validate()) {
-        this.loginUser({
+        await this.loginUser({
           username: this.username,
           password: this.password,
+        });
+
+        await this.$router.push({
+          name: "Home",
+          params: {
+            username: this.username,
+          },
         });
       }
     },
