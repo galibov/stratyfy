@@ -52,6 +52,9 @@ export default new Vuex.Store({
     async getUsers({ commit }) {
       const { data } = await axiosInstance.get("/users");
       commit("SET_USERS", data.users);
+      //it's looks like patch, but this is api limitation
+      commit("SET_IS_LOGIN", true);
+      commit("SET_IS_MANAGER", true);
     },
 
     async logOut({ commit }) {

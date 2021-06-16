@@ -22,12 +22,12 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn text link :to="{ name: 'Users' }" v-if="isManager">
+    <v-btn ref="usersList" text link :to="{ name: 'Users' }" v-if="isManager">
       <span class="mr-2">List of Users</span>
       <v-icon>mdi-account-group</v-icon>
     </v-btn>
 
-    <v-btn @click="LogOutUser" text v-if="isLogin">
+    <v-btn ref="logout" @click="LogOutUser" text v-if="isLogin">
       <span class="mr-2">Log out</span>
       <v-icon>mdi-logout</v-icon>
     </v-btn>

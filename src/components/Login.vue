@@ -32,7 +32,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn large @click="authUser" color="info">Login</v-btn>
+      <v-btn ref="loginBtn" large @click="authUser" color="info">Login</v-btn>
     </v-card-actions>
   </v-card>
 </template>
